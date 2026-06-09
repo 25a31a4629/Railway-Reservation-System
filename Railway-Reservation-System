@@ -1,0 +1,75 @@
+#include <iostream>
+#include <queue>
+using namespace std;
+
+queue<string> passengers;
+
+int main()
+{
+    int choice;
+    string name;
+
+    do
+    {
+        cout << "\n===== Railway Reservation System =====";
+        cout << "\n1. Book Ticket";
+        cout << "\n2. Cancel Ticket";
+        cout << "\n3. Display Passengers";
+        cout << "\n4. Exit";
+        cout << "\nEnter Choice: ";
+        cin >> choice;
+
+        switch(choice)
+        {
+            case 1:
+                cout << "Enter Passenger Name: ";
+                cin >> name;
+                passengers.push(name);
+                cout << "Ticket Booked Successfully!\n";
+                break;
+
+            case 2:
+                if(!passengers.empty())
+                {
+                    cout << passengers.front()
+                         << "'s Ticket Cancelled\n";
+                    passengers.pop();
+                }
+                else
+                {
+                    cout << "No Reservations Found!\n";
+                }
+                break;
+
+            case 3:
+            {
+                if(passengers.empty())
+                {
+                    cout << "No Passengers Found!\n";
+                    break;
+                }
+
+                queue<string> temp = passengers;
+
+                cout << "\nPassenger List:\n";
+
+                while(!temp.empty())
+                {
+                    cout << temp.front() << endl;
+                    temp.pop();
+                }
+                break;
+            }
+
+            case 4:
+                cout << "Thank You!\n";
+                break;
+
+            default:
+                cout << "Invalid Choice!\n";
+        }
+
+    } while(choice != 4);
+
+    return 0;
+}
